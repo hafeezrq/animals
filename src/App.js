@@ -2,7 +2,7 @@ import { useState } from 'react';
 import AnimalShow from './AnimalShow';
 
 function getRandomAnimal() {
-  const myAnimals = ['Bird', 'Cow', 'Gator', 'Horse', 'Cat', 'Dog'];
+  const myAnimals = ['bird', 'cow', 'gator', 'horse', 'cat', 'dog'];
   return myAnimals[Math.floor(Math.random() * myAnimals.length)];
 }
 
@@ -13,10 +13,14 @@ const App = () => {
     setAnimals([...animals, getRandomAnimal()]);
   };
 
+  const renderedAnimals = animals.map((animal, index) => {
+    return <AnimalShow type={animal} key={index} />;
+  });
+
   return (
     <div>
       <button onClick={handleClick}>Add Animal</button>
-      <p>Number of Animals = {animals}</p>
+      <div>{renderedAnimals}</div>
     </div>
   );
 };
